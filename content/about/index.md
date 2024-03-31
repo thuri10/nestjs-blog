@@ -6,7 +6,7 @@ draft = false
 
 My name is `Thuri`, a Software Developer currently based in Nairobi, :kenya:.
 
-Currently focusing on mobile(android) and web application security.
+Currently focusing on mobile (Android) and web security.
 
 ### Tools
 

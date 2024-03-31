@@ -6,13 +6,14 @@ summary =" Android hacking workshop by google writeup"
 +++
 
 Android app Hacking application is an application used by google team on teaching basics of android hacking. It can be downloaded from the following url: https://google.com/. The application consists of eigth different challenges containing different challenges and different concepts.
+
 For analysis the first point of analysis is the `AndroidManifest.xml` file which is the entry point of an application.
 
 ## Challenge 01
 
 > The goal of this challenge is to find the correct flag.
 
-Looking at the source code we get the right answer
+Looking at the source code of decompiled challenge01Acitvity.java we get the hardcoded Flag.
 
 ```java
 public class Challenge01Activity extends AppCompatActivity {
@@ -51,9 +52,13 @@ public class Challenge01Activity extends AppCompatActivity {
 }
 ```
 
-submitting `th3F1rst0neI5E4sy` string as our flag we get a valid message to confirm we have successfully solved the challenge.
+Submitting `th3F1rst0neI5E4sy` string as our flag we get a valid message to confirm we have successfully solved the challenge.
 
 ## Challenge 02
+
+> Insecure Logging implementation
+
+The Challenge02Activity implements some security, but the developer leaks debug information through `Logging`. Due to insecure logging implementations, we run the challenge Activity and the `userFlag` is printed in the logcat output.
 
 ```java
 public class Challenge02Activity extends AppCompatActivity {
@@ -109,8 +114,7 @@ public class Challenge02Activity extends AppCompatActivity {
 }
 ```
 
-the challenge does not some encoding and decoding as encrption. to solve the challenge we write a java code to solve the problem
-Due to insecure logging implementations, we run the application and the `userFlag` is printed in the logcat output. running `adb logcat | grep userFlag`
+Running `adb logcat | grep userFlag` we are able to get the correct user flag.
 
 ```bash
 Challenge02Activity: userFlag =   --  x0r15N0Ts0sTRoN6
@@ -189,7 +193,9 @@ Looking at the challenge three manifest file, we have also a receiver
 
 ## Challenge 04
 
-This challenge involves a native module `flagvalidation` as shown in the code below
+> Native code
+
+The challenge Acitivity implements native code through `flagvalidation` for flag Validation as shown in the code below. The Java `System.loadLibrary('')` is used to tell which native library the android application is loading.
 
 ```java
 
@@ -228,7 +234,7 @@ public class Challenge04Activity extends AppCompatActivity {
 }
 ```
 
-open the file in `ghidra` and look for the `isValidFlag` function.
+For decompoling and analzing native libraries, `ghidra` is a good tool of choice. Loading the library in the ghidra and looking at the `isValidFlag` function, we are able to get the right flag for challenge 04.
 
 Look at the decompiled code we are able to get the right flag for challenge04
 
@@ -274,12 +280,13 @@ void Java_Utils_ValidateNativeFlags_isValidFlag(int *param_1,undefined4 param_2,
 
 ```
 
-Doing the substitution operation we get the correct flag.The correct flag is `THISISHTENATIVEFLAG`.
+We use cyberchef to do subsitution of our hardcoded user input. The correct flag is `THISISHTENATIVEFLAG`.
 
 ## Challenge 05
 
-Understand how the receiver is working
-In challenge 05 we have an activity and receiver. Looking at the activity it is validating using a native library but it is never loaded
+> Understand Android Receiver component
+
+In challenge `05` we have an activity and receiver. Looking at the activity it is validating using a native library but it is never loaded.
 
 ```java
 public class Challenge05Activity extends AppCompatActivity {
@@ -446,6 +453,8 @@ undefined4 verify_flag(byte *userFlag)
 
 ## Challenge 07
 
+> Frida to the rescue
+
 The Challenge 07 implements Dynamic Code loading and deletes the loaded Decrypted payload
 
 ```java
@@ -484,6 +493,8 @@ The Challenge 07 implements Dynamic Code loading and deletes the loaded Decrypte
 we write a frida hook for not deleting the loaded payload and pull out the payload for further analysis.
 
 ## Challenge 08
+
+> Poor Webview Implementation
 
 Vulnerable webview
 

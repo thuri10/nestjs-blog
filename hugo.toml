@@ -147,7 +147,7 @@ enableEmoji = true
         # enable the fraction extended syntax
         fraction = true
         # fontawesome extended syntax
-        fontawesome = true
+        fontawesome = false
         # whether to show link to Raw Markdown content of the content
         linkToMarkdown = true
         # DoIt NEW | 0.2.14 configure the link to the source file of the post
@@ -245,7 +245,7 @@ enableEmoji = true
         identifier = "posts"
         pre =""
         post =""
-        name="Articles"
+        name="Blog"
         url="/posts"
         title=""
         weight=1
@@ -294,7 +294,7 @@ enableEmoji = true
 
 [params.author]
   name = "Thuri"
-  email = ""
+  email = "thuri@thuri.dev"
   link = "https://thuri.dev"
   avatar = ""
   gravatarEmail = ""
