@@ -297,7 +297,7 @@ enableEmoji = true
   email = "thuri@thuri.dev"
   link = "https://thuri.dev"
   avatar = ""
-  gravatarEmail = ""
+  gravatarEmail = "thuri@thuri.dev"
 
 # Privacy config
 [privacy]
