@@ -26,7 +26,6 @@ To understand broken access control vulnerabilities impact by solving the **port
 In order to solve the lab we need to access the admin panel and delete a user from the system. To get the URL path to the admin panel, we check the `Robots.txt` file.
 
 ![Admin panel path](/websec/accesscontrol/lab1-adminpanel.png)
-{{< image src="/images/lighthouse.webp" caption="Lighthouse (`image`)" src_s="/images/lighthouse-small.webp" src_l="/images/lighthouse-large.webp" >}}
 
 By visiting the above path we are able to delete the user Carlos
 

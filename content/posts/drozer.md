@@ -3,7 +3,7 @@ title: "Drozer security testing framework"
 date: 2024-03-30T11:37:15+03:00
 draft: false
 authors: [Thuri]
-tags: ["drozer", "android", "appsec", "mobilesec"]
+tags: ["drozer", "android", "appsec"]
 toc:
     enable: true
     auto: true
